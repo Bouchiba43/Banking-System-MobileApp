@@ -6,11 +6,12 @@ import { useNavigation } from "@react-navigation/native";
 const SignupScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const navigation = useNavigation();
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('http://yourbackendurl.com/api/signup', { email, password });
+      const response = await axios.post('http://127.0.0.1:8000/auth/register', { username, email, password });
       if (response.data.success) {
         navigation.navigate("Login");
       } else {
@@ -24,6 +25,12 @@ const SignupScreen = () => {
 
   return (
     <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter username"
+        value={username}
+        onChangeText={setUsername}
+      />
       <TextInput
         style={styles.input}
         placeholder="Enter email"

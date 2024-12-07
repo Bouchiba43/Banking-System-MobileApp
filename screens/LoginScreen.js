@@ -4,13 +4,13 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/auth/login', { email, password });
+      const response = await axios.post('http://127.0.0.1:8000/auth/login', { username, password });
       if (response.data.success) {
         navigation.navigate("Dashboard");
       } else {
@@ -26,9 +26,9 @@ const LoginScreen = () => {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Enter email"
-        value={email}
-        onChangeText={setEmail}
+        placeholder="Enter your username"
+        value={username}
+        onChangeText={setUsername}
       />
       <TextInput
         style={styles.input}
