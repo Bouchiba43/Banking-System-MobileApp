@@ -9,12 +9,19 @@ const LoginScreen = () => {
   const navigation = useNavigation();
 
   const handleLogin = async () => {
+
+    const payload = {
+      username: username,
+      password: password
+    };
+    
     try {
-      const response = await axios.post('http://127.0.0.1:8000/auth/login', { username, password });
+      const response = await axios.post('http://10.0.1.186:8000/auth/login', payload);
       if (response.data.success) {
         navigation.navigate("Dashboard");
       } else {
-        alert("Invalid credentials");
+        console.log("Login failed", response.data);
+        alert("Invalid credentials",);
       }
     } catch (error) {
       console.error("Login error:", error);
